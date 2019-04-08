@@ -75,14 +75,15 @@ EOF
   ![](images/300/cluster_admin1.png)
 ### **STEP 3**: Create a Traefik (Ingress-based) load balancer.
 - Use helm to install the Traefik load balancer. Use the values.yaml in the sample but set kubernetes.namespaces specifically.
-  ```
-  $ helm install stable/traefik \
+```
+ $ helm install stable/traefik \
   --name traefik-operator \
   --namespace traefik \
   --values weblogic-kubernetes-operator/kubernetes/samples/charts/traefik/values.yaml  \
   --set "kubernetes.namespaces={traefik}" \
-  --wait
-  ```
+  --set "serviceType=LoadBalancer"
+```
+
   ![](images/300/Traefik_Echo.png)
 
 ### **STEP 4**: Install the operator.
@@ -159,7 +160,7 @@ Once you have your domain namespace (WebLogic domain not yet deployed) you have 
 
 Make sure before execute domain `helm` install you are in the WebLogic Operator's local Git repository folder.
 ```
-cd ~/weblogic-kubernetes-operator/
+cd weblogic-kubernetes-operator/
 ```
 To update operator execute the following `helm upgrade` command:
 ```
@@ -187,7 +188,7 @@ To deploy WebLogic domain you need to create a domain resource definition which 
 
 You can modify the provided sample in the local repository.
 ```
-cd /kubernetes/samples/scripts/create-weblogic-domain/manually-create-domain
+cd kubernetes/samples/scripts/create-weblogic-domain/manually-create-domain
 vi domain.yaml
 ```
 Use your favourite text editor to modify domain resource definition values. If necessary remove comment leading character (#) of the parameter to activate. Always enter space before the value, after the colon.
@@ -260,7 +261,7 @@ The EXTERNAL-IP was determined during Traefik install. If you forgot to note the
 $ kubectl describe svc traefik-operator --namespace traefik | grep Ingress | awk '{print $3}'
 129.213.150.77
 ```
-- Let’s use one of the node’s external IP addresses to access the Administration Console. Example: http://129.213.150.77:30701/console/
+- Let’s use one of the node’s external IP addresses to access the Administration Console. Example: http://129.213.150.77/console/
     
     ![](images/300/console1.png)
 
