@@ -108,7 +108,7 @@ Open [https://hub.docker.com/_/oracle-weblogic-server-12c](https://hub.docker.co
 
 In this step you will fork the tutorial's source repository. The source repository contains the demo application deployed on top of WebLogic server, configuration yaml to quickly create Oracle Container Pipelines(CI/CD) application to build custom WebLogic image and few additional Kubernetes configuration files to deploy the custom WebLogic image.
 
-Open the [https://github.com/nagypeter/weblogic-operator-tutorial.git] repository in your browser. Click the **Fork** button at the left top area. Sign in to github.com if necessary.
+Open the https://github.com/nagypeter/weblogic-operator-tutorial.git repository in your browser. Click the **Fork** button at the left top area. Sign in to github.com if necessary.
 
 ![alt text](images/100/wercker/fork.png)
 
